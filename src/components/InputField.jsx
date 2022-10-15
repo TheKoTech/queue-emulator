@@ -3,22 +3,10 @@ import React, { Component } from 'react'
 
 export default class InputField extends Component {
 
-	constructor(props) {
-		super(props)
-		this.state = { value: 1 }
-	}
-
-	updateValue(e) {
-		if (e.target.validity.valid) {
-			this.setState({ value: +e.target.value })
-		}
-	}
-
-	componentDidUpdate() {
-		console.log(this.state.value);
-	}
-
 	render() {
+
+		const value = this.props.defaultValue
+
 		return (
 			<div className='input_field_container'>
 				<label>
@@ -27,8 +15,12 @@ export default class InputField extends Component {
 				<input
 					type="text"
 					className='input_field'
+					id={this.props.id}
 					pattern='\d{1,3}'
-					onChange={(e) => this.updateValue(e)} />
+					defaultValue={value}
+					onChange={(e) => this.props.onChange(e)}
+					required
+				/>
 			</div>
 		)
 	}

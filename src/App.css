@@ -1,6 +1,7 @@
 :root {
-	--bg-main: rgb(46, 73, 46);
-	--bg-attribute-panel: rgb(32, 48, 32);
+	--bg-cashiers-panel: rgb(35, 39, 49);
+	--bg-attribute-panel: rgb(28, 32, 43);
+	--border-main: rgb(30, 112, 67);
 	--text-normal: rgb(234, 239, 234);
 }
 
@@ -13,12 +14,23 @@ html, body, #root, .App {
 	height: 100%;
 }
 
+.App {
+	display: flex;
+}
+
 .attribute_panel {
-	height: 100%;
-	min-width: 250px;
-	width: 20%;
+	padding: 25px;
+	min-width: 270px;
+	width: 30%;
 	background: var(--bg-attribute-panel);
-	border-right:rgb(218, 223, 218) 1px solid;
+	border-right: var(--border-main) 1px solid;
+}
+
+.cashiers_panel {
+	margin: 0;
+	padding: 25px;
+	background: var(--bg-cashiers-panel);
+	width: 100%;
 }
 
 .input_field {
