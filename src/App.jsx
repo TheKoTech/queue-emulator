@@ -20,10 +20,11 @@ export default class App extends Component {
 	}
 
 	handleInputChange(e) {
-		let state = {}
+		let inputs = {}
 		if (!e.target.validity.valid) return
-		state[e.target.id] = +e.target.value
-		this.setState(state, () => console.log(this.state))
+		inputs[e.target.id] = +e.target.value
+		this.setState({data: inputs})
+
 	}
 
 	componentDidMount() {
@@ -39,13 +40,16 @@ export default class App extends Component {
 	}
 
 	render() {
+		const data = this.state.data
+		console.log(this.state.data)
 		return (
 			<div className="App">
 				<AttributePanel
 					onChange={(e) => this.handleInputChange(e)}
 				/>
 				<CashierPanel
-					data={this.state.data}
+					key={data}
+					data={data}
 				/>
 			</div>
 		)
