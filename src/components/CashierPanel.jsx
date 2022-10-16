@@ -2,12 +2,11 @@ import React, { Component } from 'react'
 import CashierList from './CashierList'
 
 export default class CashierPanel extends Component {
-
 	render() {
-		console.log(this.props);
+		// console.log(this.props.data)
 		return (
 			<div className='cashiers_panel'>
-				<CashierList data={this.props.data}/>
+				<CashierList data={this.props.data} />
 			</div>
 		)
 	}

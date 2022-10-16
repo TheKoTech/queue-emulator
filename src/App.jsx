@@ -22,20 +22,20 @@ export default class App extends Component {
 	handleInputChange(e) {
 		let state = {}
 		if (!e.target.validity.valid) return
-		state[e.target.id] = e.target.value
-		this.setState(state, () => console.log(this.state[e.target.id]))
+		state[e.target.id] = +e.target.value
+		this.setState(state, () => console.log(this.state))
 	}
 
 	componentDidMount() {
-		this.timer = setInterval(
-			() => {
-				// this.setState();
-			},
-			1000)
+		// this.timer = setInterval(
+		// 	() => {
+		// 		// this.setState();
+		// 	},
+		// 	1000)
 	}
 
 	componentWillUnmount() {
-		clearInterval(this.timer)
+		// clearInterval(this.timer)
 	}
 
 	render() {
@@ -45,7 +45,7 @@ export default class App extends Component {
 					onChange={(e) => this.handleInputChange(e)}
 				/>
 				<CashierPanel
-					inputs={this.state.data}
+					data={this.state.data}
 				/>
 			</div>
 		)

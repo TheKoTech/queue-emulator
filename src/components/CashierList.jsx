@@ -3,8 +3,10 @@ import Cashier from './Cashier'
 
 export default function CashierList(props) {
 
+	// console.log(props.data)
+
 	const cashierKeys = []
-	for (let i = 0; i < props.amount; i++) {
+	for (let i = 0; i < props.data.numOfCashiers; i++) {
 		cashierKeys.push(i)
 	}
 
