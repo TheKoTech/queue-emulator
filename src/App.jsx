@@ -41,7 +41,6 @@ export default class App extends Component {
 
 	render() {
 		const data = this.state.data
-		console.log(this.state.data)
 		return (
 			<div className="App">
 				<AttributePanel

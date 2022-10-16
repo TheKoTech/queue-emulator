@@ -10,15 +10,14 @@ export default class CashierPanel extends Component {
 		}
 	}
 
-	static getDerivedStateFromProps(props, state) {
-		// console.log(props.data);
-		if (props.data !== state.data) {
-			return {
-				data: props.data
-			}
-		}
-		return null
-	}
+	// static getDerivedStateFromProps(props, state) {
+	// 	if (props.data !== state.data) {
+	// 		return {
+	// 			data: props.data
+	// 		}
+	// 	}
+	// 	return null
+	// }
 
 	render() {
 		return (
