@@ -1,7 +1,13 @@
 import React, { Component } from 'react'
 import InputField from './InputField'
+import PropTypes from 'prop-types'
 
-export default class AttributePanel extends Component {
+export default class InputPanel extends Component {
+
+	/** Как я без этого жил, мммм статическая типизация */
+	static propTypes = {
+		onChange: PropTypes.func
+	}
 
 	render() {
 		return (

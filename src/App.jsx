@@ -1,5 +1,5 @@
 import './App.css';
-import AttributePanel from './components/InputPanel';
+import InputPanel from './components/InputPanel';
 
 import React, { Component } from 'react'
 import CashierPanel from './components/CashierPanel';
@@ -19,31 +19,20 @@ export default class App extends Component {
 		}
 	}
 
+	/** Добавляет данные из InputField в this.state. */
 	handleInputChange(e) {
-		let inputs = {}
+		// setState() принимает объект, поэтому заполняем объект единственным значением и добавляем в this.state
+		let newData = {}
 		if (!e.target.validity.valid) return
-		inputs[e.target.id] = +e.target.value
-		this.setState({data: inputs})
-
-	}
-
-	componentDidMount() {
-		// this.timer = setInterval(
-		// 	() => {
-		// 		// this.setState();
-		// 	},
-		// 	1000)
-	}
-
-	componentWillUnmount() {
-		// clearInterval(this.timer)
+		newData[e.target.id] = +e.target.value
+		this.setState({ data: newData })
 	}
 
 	render() {
 		const data = this.state.data
 		return (
 			<div className="App">
-				<AttributePanel
+				<InputPanel
 					onChange={(e) => this.handleInputChange(e)}
 				/>
 				<CashierPanel
