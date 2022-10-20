@@ -9,27 +9,37 @@ export default class App extends Component {
 	constructor() {
 		super()
 		this.state = {
-			data: {
-				numOfCashiers: 1,
-				customersInterval: 1,
-				customersPerInterval: 1,
-				minServeTime: 1,
-				maxServeTime: 2
-			}
+			numOfCashiers: 1,
+			customersInterval: 1,
+			customersPerInterval: 1,
+			minServeTime: 1,
+			maxServeTime: 2
 		}
 	}
 
 	/** Добавляет данные из InputField в this.state. */
 	handleInputChange(e) {
-		// setState() принимает объект, поэтому заполняем объект единственным значением и добавляем в this.state
-		let newData = {}
+		let state = {}
 		if (!e.target.validity.valid) return
-		newData[e.target.id] = +e.target.value
-		this.setState({ data: newData })
+		state[e.target.id] = +e.target.value
+		this.setState(state)
+
+	}
+
+	componentDidMount() {
+		// this.timer = setInterval(
+		// 	() => {
+		// 		// this.setState();
+		// 	},
+		// 	1000)
+	}
+
+	componentWillUnmount() {
+		// clearInterval(this.timer)
 	}
 
 	render() {
-		const data = this.state.data
+		const data = this.state
 		return (
 			<div className="App">
 				<InputPanel

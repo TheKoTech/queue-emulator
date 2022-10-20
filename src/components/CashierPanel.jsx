@@ -6,18 +6,9 @@ export default class CashierPanel extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			data: null
+			
 		}
 	}
-
-	// static getDerivedStateFromProps(props, state) {
-	// 	if (props.data !== state.data) {
-	// 		return {
-	// 			data: props.data
-	// 		}
-	// 	}
-	// 	return null
-	// }
 
 	render() {
 		return (
