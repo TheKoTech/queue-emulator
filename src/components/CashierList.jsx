@@ -48,13 +48,13 @@ export default class CashierList extends Component {
 		}
 
 		const cashierList = cashierKeys.map((key) =>
-			<Cashier key={key} />
+			<Cashier key={key} title={'Cashier ' + key} />
 		)
 
 		return (
-			<ul>
+			<div className='cashier_list'>
 				{cashierList}
-			</ul>
+			</div>
 		)
 	}
 }

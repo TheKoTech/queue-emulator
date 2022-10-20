@@ -17,8 +17,8 @@ export default class InputPanel extends Component {
 			numOfCashiers: 'Количество касс',
 			customersInterval: 'Интервал',
 			customersPerInterval: 'Количество',
-			minServeTime: 'Мин. время обслуживания',
-			maxServeTime: 'Макс. время обслуживания'
+			minServeTime: 'Мин. время',
+			maxServeTime: 'Макс. время'
 		}
 
 		const inputFields = []
@@ -36,7 +36,10 @@ export default class InputPanel extends Component {
 
 		return (
 			<div className='input_panel'>
-				{inputFields}
+				<h1>Переменные</h1> 
+				<div className='input_list'>
+					{inputFields}
+				</div>
 			</div>
 		)
 	}

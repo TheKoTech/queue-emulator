@@ -1,8 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 :root {
 	--bg-cashiers-panel: rgb(35, 39, 49);
 	--bg-attribute-panel: rgb(28, 32, 43);
-	--border-main: rgb(30, 112, 67);
+	--border-main: rgb(18, 145, 75);
 	--text-normal: rgb(234, 239, 234);
+	--bg-input: rgb(36, 42, 54);
+	--focus-border: rgb(30, 163, 90);
+	--color-accent: rgb(11, 206, 99);
 }
 
 html {
@@ -10,17 +15,18 @@ html {
 	background: var(--bg-main);
 }
 
-html, body, #root, .App {
+html,
+body,
+#root,
+.App {
 	height: 100%;
 }
 
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	margin: 0;
+	font-family: 'Inter';
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 .App {
@@ -29,10 +35,42 @@ body {
 
 .input_panel {
 	padding: 25px;
-	min-width: 270px;
-	width: 30%;
+	width: 300px;
 	background: var(--bg-attribute-panel);
-	border-right: var(--border-main) 1px solid;
+	border-right: var(--focus-border) 2px solid;
+}
+
+.input_list {
+	display: flex;
+	flex-direction: column;
+	row-gap: 17px;
+}
+
+.input_field label {
+	display: block;
+	text-transform: uppercase;
+	padding: 4px 17px;
+	font-size: 1em;
+	font-weight: 500;
+}
+
+.input_field input {
+	background: var(--bg-input);
+	font-size: 1em;
+	color: var(--text-normal);
+	border: none;
+	border-radius: 5px;
+	padding: 9px 15px;
+	box-sizing: border-box;
+	width: 100%;
+}
+
+.input_field input:focus {
+	outline: var(--focus-border) 3px solid;
+}
+
+.input_field input:invalid {
+	outline: red 3px solid;
 }
 
 .cashiers_panel {
@@ -42,14 +80,33 @@ body {
 	width: 100%;
 }
 
-.input_field {
+.cashier_list {
+	display: flex;
+	flex-direction: column;
+	row-gap: 15px;
+}
+
+.cashier {
+	background: rgba(8, 16, 26, 0.25);
+	border-radius: 10px;
+	padding: 15px;
 
 }
 
-.input_field:invalid {
-	outline: red 1px solid;
+.cashier h3 {
+	margin-top: 0;
+	margin-bottom: 10px;
 }
 
-.input_field_container label {
+.queue_icon {
 	display: block;
+	width: 32px;
+	height: 32px;
+	opacity: 0.6;
+	background: url('https://api.iconify.design/bi/people.svg?color=white&flip=horizontal') no-repeat center center / contain;
 }
+
+
+
+
+

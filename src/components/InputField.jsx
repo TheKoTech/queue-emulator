@@ -8,13 +8,12 @@ export default class InputField extends Component {
 		const value = this.props.defaultValue
 
 		return (
-			<div className='input_field_container'>
+			<div className='input_field'>
 				<label>
 					{this.props.label}
 				</label>
 				<input
 					type="text"
-					className='input_field'
 					id={this.props.id}
 					pattern='\d{1,3}'
 					defaultValue={value}
