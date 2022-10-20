@@ -6,6 +6,7 @@ export default class InputPanel extends Component {
 
 	/** Как я без этого жил, мммм статическая типизация */
 	static propTypes = {
+		/** Событие изменения одного из InputField */
 		onChange: PropTypes.func
 	}
 

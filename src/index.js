@@ -4,7 +4,5 @@ import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  // <React.StrictMode> // рендерит страницу дважды >:c
-    <App />
-  // </React.StrictMode>
+	<App />
 )
