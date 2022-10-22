@@ -27,7 +27,6 @@ export default class App extends Component {
 					onChange={(e) => this.handleInputChange(e)}
 				/>
 				<CashierPanel
-					key={this.state}
 					data={this.state}
 				/>
 			</div>
