@@ -105,7 +105,7 @@ body {
 	/* height: 32px; */
 	padding: 10px;
 	border-radius: 8px;
-	background:rgba(11, 206, 99, 0.1);
+	background: rgba(11, 206, 99, 0.1);
 }
 
 .cashier h3 {
@@ -133,11 +133,12 @@ body {
 	content: url('https://api.iconify.design/subway/time-2.svg?color=white');
 }
 
-.time_input {
-	width: 70px;
+.param_label {
+	width: 50px;
 	background: none;
 	font-size: inherit;
 	color: var(--text-normal);
 	text-align: right;
+	align-self: center;
 	border: none;
 }

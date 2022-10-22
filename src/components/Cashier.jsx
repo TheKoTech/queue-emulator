@@ -18,25 +18,15 @@ export default class Cashier extends Component {
 				<div className="param_list">
 					<div className="param_box">
 						<span className="queue_icon" />
-						<span className="queue_label">
+						<span className="param_label">
 							{this.props.numOfCustomers}
 						</span>
 					</div>
 					<div className="param_box">
 						<span className="time_icon" />
-						<input
-							className="time_input" id="minTime"
-							defaultValue={this.props.minTime}
-							type="number"
-							min={0}
-							max={99} />
-						<input
-							className="time_input"
-							id="maxTime"
-							defaultValue={this.props.maxTime}
-							type="number"
-							min={0}
-							max={99} />
+						<span className="param_label">
+							{this.props.maxTime}
+						</span>
 					</div>
 				</div>
 			</div>
