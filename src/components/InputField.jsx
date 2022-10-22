@@ -1,12 +1,17 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 
 export default class InputField extends Component {
 
+	static propTypes = {
+		id: PropTypes.string,
+		label: PropTypes.string,
+		defaultValue: PropTypes.number,
+		onChange: PropTypes.func
+	}
+
 	render() {
-
-		const value = this.props.defaultValue
-
 		return (
 			<div className='input_field'>
 				<label>
@@ -16,7 +21,7 @@ export default class InputField extends Component {
 					type="text"
 					id={this.props.id}
 					pattern='\d{1,3}'
-					defaultValue={value}
+					defaultValue={this.props.defaultValue}
 					onChange={(e) => this.props.onChange(e)}
 					required
 				/>

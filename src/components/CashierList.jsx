@@ -3,57 +3,50 @@ import Cashier from './Cashier'
 // import memoize from 'memoize-one'
 
 
-export default class CashierList extends Component {
+function randInt(max) {
+	return Math.floor(Math.random() * max)
+}
 
-	randInt(max) {
-		return Math.floor(Math.random() * max)
-	}
+
+export default class CashierList extends Component {
 
 	constructor(props) {
 		super(props)
-		this.state = {
-			numOfCustomers: Array.from(
-				{ length: props.data.numOfCashiers },
-				() => 0
-			),
-			timeTillNextCustomers: Array.from(
-				{ length: props.data.numOfCashiers },
-				() => this.randInt(props.data.customersInterval + 1)
-			)
-		}
+		this.state = {}
 	}
 
-	componentDidMount() {
-		// this.timer = setInterval(
-		// 	() => {
-
-		// 	},
-		// 	1000)
-	}
-
-	componentWillUnmount() {
-		// clearInterval(this.timer)
-	}
-
-	/** Вызывается перед render(), когда обновляются props */
 	static getDerivedStateFromProps(props, state) {
+		// if (state.timerID !== undefined) {
+		// 	clearInterval(state.timerID)
+		// }
+
+		// return {
+		// 	timerID: setInterval(() => {
+				
+		// 	}, 1000)
+		// }
 		return null
 	}
 
+	componentWillUnmount() {
+		clearInterval(this.state.timerID)
+	}
+
 	render() {
+		console.log('CashierList.jsx: render()')
 		const cashierKeys = []
 		for (let i = 0; i < this.props.data.numOfCashiers; i++) {
 			cashierKeys.push(i)
 		}
 
 		const cashierList = cashierKeys.map((key) =>
-			<Cashier
+			< Cashier
 				key={key}
 				title={'Cashier ' + (key + 1)}
 				// Заглушка
-				numOfCustomers={this.randInt(4)}
-				minTime={this.randInt(4)}
-				maxTime={this.randInt(2) + 3}
+				numOfCustomers={randInt(4)}
+				minTime={randInt(4)}
+				maxTime={randInt(2) + 3}
 			/>
 		)
 
@@ -64,4 +57,3 @@ export default class CashierList extends Component {
 		)
 	}
 }
-

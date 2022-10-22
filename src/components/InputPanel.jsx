@@ -6,37 +6,50 @@ export default class InputPanel extends Component {
 
 	/** Как я без этого жил, мммм статическая типизация */
 	static propTypes = {
-		/** Событие изменения одного из InputField */
+		defaultValues: PropTypes.object,
 		onChange: PropTypes.func
 	}
 
 	render() {
 
 		// В каждом поле можно указать по доп. объекту, в каджом свой defaultValue.
-		const inputLabels = {
-			numOfCashiers: 'Количество касс',
-			customersInterval: 'Интервал',
-			customersPerInterval: 'Количество',
-			minServeTime: 'Мин. время',
-			maxServeTime: 'Макс. время'
-		}
 
-		const inputFields = []
-		for (const property in inputLabels) {
-			inputFields.push(
-				<InputField
-					id={property}
-					label={inputLabels[property]}
-					onChange={e => this.props.onChange(e)}
-					defaultValue={1}
-					key={inputLabels[property]}
-				/>
-			)
-		}
+		const inputFieldProps = [
+			{
+				id: 'numOfCashiers',
+				label: 'Количество касс',
+			},
+			{
+				id: 'customersInterval',
+				label: 'Интервал',
+			},
+			{
+				id: 'customersPerInterval',
+				label: 'Покупателей',
+			},
+			{
+				id: 'minServeTime',
+				label: 'Мин. время',
+			},
+			{
+				id: 'maxServeTime',
+				label: 'Макс. время',
+			}
+		]
+
+		const inputFields = inputFieldProps.map((prop) => (
+			<InputField
+				id={prop.id}
+				label={prop.label}
+				onChange={e => this.props.onChange(e)}
+				defaultValue={this.props.defaultValues[prop.id]}
+				key={prop.id}
+			/>
+		))
 
 		return (
 			<div className='input_panel'>
-				<h1>Переменные</h1> 
+				<h1>Переменные</h1>
 				<div className='input_list'>
 					{inputFields}
 				</div>
