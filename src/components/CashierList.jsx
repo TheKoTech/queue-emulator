@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Cashier from './Cashier'
-import memoize from 'memoize-one'
+// import memoize from 'memoize-one'
 
 
 export default class CashierList extends Component {
@@ -21,7 +21,6 @@ export default class CashierList extends Component {
 				() => this.randInt(props.data.customersInterval + 1)
 			)
 		}
-		// console.log(memoize)
 	}
 
 	componentDidMount() {
@@ -33,12 +32,12 @@ export default class CashierList extends Component {
 	}
 
 	componentWillUnmount() {
-		clearInterval(this.timer)
+		// clearInterval(this.timer)
 	}
 
 	/** Вызывается перед render(), когда обновляются props */
 	static getDerivedStateFromProps(props, state) {
-		
+		return null
 	}
 
 	render() {
@@ -48,7 +47,14 @@ export default class CashierList extends Component {
 		}
 
 		const cashierList = cashierKeys.map((key) =>
-			<Cashier key={key} title={'Cashier ' + key} />
+			<Cashier
+				key={key}
+				title={'Cashier ' + (key + 1)}
+				// Заглушка
+				numOfCustomers={this.randInt(4)}
+				minTime={this.randInt(4)}
+				maxTime={this.randInt(2) + 3}
+			/>
 		)
 
 		return (

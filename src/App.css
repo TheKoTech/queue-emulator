@@ -93,20 +93,51 @@ body {
 
 }
 
+.cashier .param_list {
+	display: flex;
+	column-gap: 15px;
+}
+
+.cashier .param_box {
+	display: flex;
+	font-size: 1.3em;
+	align-items: stretch;
+	/* height: 32px; */
+	padding: 10px;
+	border-radius: 8px;
+	background:rgba(11, 206, 99, 0.1);
+}
+
 .cashier h3 {
 	margin-top: 0;
 	margin-bottom: 10px;
 }
 
 .queue_icon {
-	display: block;
+	opacity: 0.7;
 	width: 32px;
-	height: 32px;
-	opacity: 0.6;
-	background: url('https://api.iconify.design/bi/people.svg?color=white&flip=horizontal') no-repeat center center / contain;
+	content: url('https://api.iconify.design/bi/people.svg?color=white&flip=horizontal');
 }
 
+.queue_label {
+	width: 40px;
+	align-self: center;
+	text-align: right;
+}
 
+.time_icon {
+	opacity: 0.7;
+	height: 28px;
+	width: 32px;
+	align-self: center;
+	content: url('https://api.iconify.design/subway/time-2.svg?color=white');
+}
 
-
-
+.time_input {
+	width: 70px;
+	background: none;
+	font-size: inherit;
+	color: var(--text-normal);
+	text-align: right;
+	border: none;
+}
