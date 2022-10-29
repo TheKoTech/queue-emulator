@@ -7,7 +7,7 @@ export default class App extends Component {
 
 	state = {
 		numOfCashiers: 3,
-		customersInterval: 5,
+		customersInterval: 2,
 		customersPerInterval: 2,
 		minServeTime: 2,
 		maxServeTime: 5

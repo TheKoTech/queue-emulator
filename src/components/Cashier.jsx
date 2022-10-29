@@ -1,35 +1,35 @@
-import React, { Component } from "react";
-import PropTypes, { number } from "prop-types";
+import React from 'react'
+import PropTypes from 'prop-types'
 
-/** Fully controlled component. */
-export default class Cashier extends Component {
-	static propTypes = {
-		numOfCustomers: PropTypes.number,
-		minTime: PropTypes.number,
-		maxTime: PropTypes.number,
-		onMinTimeChange: PropTypes.func,
-		onMaxTimeChange: PropTypes.func,
-	};
 
-	render() {
-		return (
-			<div className="cashier">
-				<h3>{this.props.title}</h3>
-				<div className="param_list">
-					<div className="param_box">
-						<span className="queue_icon" />
-						<span className="param_label">
-							{this.props.numOfCustomers}
-						</span>
-					</div>
-					<div className="param_box">
-						<span className="time_icon" />
-						<span className="param_label">
-							{this.props.maxTime}
-						</span>
-					</div>
+function Cashier(props) {
+	return (
+		<div className="cashier">
+			<h3>{props.title}</h3>
+			<div className="param_list">
+				<div className="param_box">
+					<span className="queue_icon" />
+					<span className="param_label">
+						{props.numOfCustomers}
+					</span>
+				</div>
+				<div className="param_box">
+					<span className="time_icon" />
+					<span className="param_label">
+						{props.maxTime}
+					</span>
 				</div>
 			</div>
-		);
-	}
+		</div>
+	)
 }
+
+Cashier.propTypes = {
+	numOfCustomers: PropTypes.number,
+	minTime: PropTypes.number,
+	maxTime: PropTypes.number,
+	onMinTimeChange: PropTypes.func,
+	onMaxTimeChange: PropTypes.func,
+}
+
+export default Cashier
