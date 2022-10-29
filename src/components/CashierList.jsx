@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useEffect, useState } from 'react'
 import Cashier from './Cashier'
 
 
@@ -6,96 +6,32 @@ function randInt(max) {
 	return Math.floor(Math.random() * max)
 }
 
+function CashierList(props) {
 
-export default class CashierList extends Component {
+	let timeTillNextCustomers = randInt(props.customersInterval)
 
-	constructor(props) {
+	useEffect(() => {
+		const timer = setInterval(() => tick(), 1000)
+		return () => clearInterval(timer)
+	})
 
-		super(props)
-		this.timerID = this.getTimer()
-		this.interval = props.data.customersInterval
-		this.timeTillNextCustomers = randInt(props.data.customersInterval)
 
-	}
-
-	getTimer() {
-		return setInterval(
-			() => this.tick(),
-			1000)
-	}
-
-	tick() {
-		
-		if (this.timeTillNextCustomers === 0) {
-			this.timeTillNextCustomers = randInt(this.props.data.customersInterval)
+	function tick() {
+		if (timeTillNextCustomers === 0) {
+			timeTillNextCustomers = randInt(props.customersInterval)
 		} else {
-			this.timeTillNextCustomers--
+			timeTillNextCustomers--
 		}
-		console.log(this.timeTillNextCustomers)
-
+		console.log(timeTillNextCustomers)
 	}
 
-	componentWillUnmount() {
-		clearInterval(this.timerID)
-		console.log('timeout cleared')
-	}
 
-	render() {
+	return (
+		<div className='cashier_list'>
 
-		if (this.interval !== this.props.data.customersInterval) {
-			clearInterval(this.timerID)
-			this.timerID = this.getTimer(this.props.data.customersInterval)
-			this.interval = this.props.data.customersInterval
-		}
-
-		if (this.props.data.customersInterval < this.interval) {
-			//todo: перераспределить очереди
-		}
-		if (this.props.data.customersInterval > this.interval) {
-			//todo: перераспределить очереди
-		}
-		
-		const cashierKeys = []
-		this.cashierQueueLengths = []
-
-		for (let i = 0; i < this.props.data.numOfCashiers; i++) {
-			cashierKeys.push(i)
-			this.cashierQueueLengths.push(0)
-		}
-		
-		this.cashierList =	cashierKeys.map((key, i) =>
-			<Cashier
-				key={key}
-				title={'Cashier ' + (key + 1)}
-				numOfCustomers={this.cashierQueueLengths[i]}
-				minTime={this.props.data.minServeTime}
-				maxTime={this.props.data.maxServeTime}
-			/>
-		)
-
-		console.log('CashierList.jsx: render()')
-
-		return (
-			<div className='cashier_list'>
-				{this.state.cashierList}
-			</div>
-		)
-	}
+		</div>
+	)
 
 }
 
-
-// export default function CashierList() {
-
-// 	useEffect(() => {
-		
-// 		const timerID = this.getTimer()
-// 		const interval = props.data.customersInterval
-// 		const timeTillNextCustomers = randInt(props.data.customersInterval)
-
-// 	}) 
-
-// 	return (
-// 		<div>CashierList</div>
-// 	)
-// }
+export default CashierList

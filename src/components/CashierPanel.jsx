@@ -9,7 +9,7 @@ export default class CashierPanel extends Component {
 				<h1>
 					Кассы
 				</h1>
-				<CashierList data={this.props.data} />
+				<CashierList {...this.props.data} />
 			</div>
 		)
 	}
