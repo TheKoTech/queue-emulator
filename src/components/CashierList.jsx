@@ -12,7 +12,17 @@ function CashierList(props) {
 	const [queueLengths, setQueueLengths] = useState(new Array(props.numOfCashiers).fill(0))
 	useEffect(() => {
 		console.log('reset');
-		setQueueLengths(new Array(props.numOfCashiers).fill(0))
+		setQueueLengths((prevQueue) => {
+			let sumOfCustomers = 0
+			prevQueue.forEach(num => { sumOfCustomers += num })
+			const newQueue = new Array(props.numOfCashiers).fill(Math.floor(sumOfCustomers / props.numOfCashiers))
+
+			for (let i = 0; i < sumOfCustomers % props.numOfCashiers; i++) {
+				newQueue[i]++
+			}
+
+			return newQueue
+		})
 	}, [props.numOfCashiers])
 
 
@@ -55,7 +65,7 @@ function CashierList(props) {
 		}, 1000)
 		console.log('new timer')
 		return () => clearInterval(timer)
-	}, [props.customersInterval, props.customersPerInterval])
+	}, [props])
 
 
 	return (
