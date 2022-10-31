@@ -1,4 +1,4 @@
-import './App.css';
+import './style.css';
 import InputPanel from './components/InputPanel';
 import React, { Component } from 'react'
 import CashierPanel from './components/CashierPanel';
@@ -26,9 +26,7 @@ export default class App extends Component {
 					defaultValues={this.state}
 					onChange={(e) => this.handleInputChange(e)}
 				/>
-				<CashierPanel
-					data={this.state}
-				/>
+				<CashierPanel {...this.state}/>
 			</div>
 		)
 	}
