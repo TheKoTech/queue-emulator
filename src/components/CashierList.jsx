@@ -9,10 +9,7 @@ function CashierList(props) {
 	}
 
 
-	const [queueLengths, setQueueLengths] = useState(
-		new Array(props.numOfCashiers).fill(0)
-	)
-
+	const [queueLengths, setQueueLengths] = useState(new Array(props.numOfCashiers).fill(0))
 	useEffect(() => {
 		console.log('reset');
 		setQueueLengths(new Array(props.numOfCashiers).fill(0))
@@ -20,10 +17,8 @@ function CashierList(props) {
 
 
 	const [cashierList, setCashierList] = useState()
-
 	useEffect(() => {
 		const cashierKeys = Array.from({ length: props.numOfCashiers }, (_, i) => i)
-		console.log('setCashiers')
 		setCashierList(
 			cashierKeys.map((key, i) =>
 				<Cashier key={key}
@@ -35,29 +30,30 @@ function CashierList(props) {
 			)
 		)
 	}, [queueLengths])
- 
+
 
 	let timeTillNextCustomers = randInt(props.customersInterval) + 1
-
 	useEffect(() => {
 		const timer = setInterval(() => {
 			if (timeTillNextCustomers === 0) {
 
 				timeTillNextCustomers = randInt(props.customersInterval) + 1
-				const newCustomers = randInt(props.customersPerInterval + 1)
-				const newQueues = [...queueLengths]
 
-				for (let i = 0; i < newQueues.length; i++) {
-					newQueues[i]++
-				}
-				console.log(newQueues)
+				setQueueLengths((oldQueues) => {
+					const newQueues = [...oldQueues]
+					const newCustomers = randInt(props.customersPerInterval + 1)
 
-				setQueueLengths(newQueues)
+					for (let i = 0; i < newCustomers; i++) {
+						newQueues[newQueues.indexOf(Math.min(...newQueues))]++
+					}
+
+					return newQueues
+				})
 
 			}
-
 			timeTillNextCustomers--
 		}, 1000)
+		console.log('new timer')
 		return () => clearInterval(timer)
 	}, [props.customersInterval, props.customersPerInterval])
 
