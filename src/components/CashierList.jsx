@@ -26,16 +26,23 @@ function CashierList(props) {
 	}, [props.numOfCashiers])
 
 
+	function onCashierServed(id) {
+		console.log('Касса ' + id)
+	}
+
+
 	const [cashierList, setCashierList] = useState()
 	useEffect(() => {
 		const cashierKeys = Array.from({ length: props.numOfCashiers }, (_, i) => i)
 		setCashierList(
-			cashierKeys.map((key, i) =>
-				<Cashier key={key}
-					title={'Касса ' + (key + 1)}
-					numOfCustomers={queueLengths[i]}
+			cashierKeys.map((val) =>
+				<Cashier key={val}
+					title={'Касса ' + (val + 1)}
+					id={val}
+					numOfCustomers={queueLengths[val]}
 					minTime={props.minServeTime}
 					maxTime={props.maxServeTime}
+					onServed={onCashierServed}
 				/>
 			)
 		)

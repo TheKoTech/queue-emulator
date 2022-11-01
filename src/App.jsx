@@ -6,9 +6,9 @@ import CashierPanel from './components/CashierPanel';
 export default class App extends Component {
 
 	state = {
-		numOfCashiers: 3,
-		customersInterval: 2,
-		customersPerInterval: 2,
+		numOfCashiers: 1,
+		customersInterval: 1,
+		customersPerInterval: 1,
 		minServeTime: 2,
 		maxServeTime: 5
 	}
