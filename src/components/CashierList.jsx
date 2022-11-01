@@ -27,7 +27,14 @@ function CashierList(props) {
 
 
 	function onCashierServed(id) {
-		console.log('Касса ' + id)
+		setQueueLengths((prevQueue) => {
+			if (prevQueue[id] > 0) {
+				const newQueue = [...prevQueue]
+				newQueue[id]--
+				return newQueue
+			}
+			return prevQueue
+		})
 	}
 
 
@@ -36,7 +43,8 @@ function CashierList(props) {
 		const cashierKeys = Array.from({ length: props.numOfCashiers }, (_, i) => i)
 		setCashierList(
 			cashierKeys.map((val) =>
-				<Cashier key={val}
+				<Cashier
+					key={val}
 					title={'Касса ' + (val + 1)}
 					id={val}
 					numOfCustomers={queueLengths[val]}
