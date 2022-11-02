@@ -76,7 +76,7 @@ body {
 }
 
 .button {
-	background: rgb(219, 62, 0);
+	background: rgb(179, 51, 0);
 	text-transform: uppercase;
 	font-weight: bold;
 	font-size: 1em;
@@ -87,6 +87,10 @@ body {
 	box-sizing: border-box;
 	width: 100%;
 	cursor: pointer;
+}
+
+.button.resume {
+	background:rgb(4, 148, 69);
 }
 
 .cashiers_panel {

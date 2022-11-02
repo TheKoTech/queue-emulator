@@ -49,7 +49,7 @@ function CashierList(props) {
 				<Cashier
 					key={val}
 					title={'Касса ' + (val + 1)}
-					paused={props.paused || queueLengths[val] == 0}
+					paused={props.paused || queueLengths[val] === 0}
 					id={val}
 					numOfCustomers={queueLengths[val]}
 					minTime={props.minServeTime}
