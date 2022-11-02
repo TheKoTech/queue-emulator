@@ -47,8 +47,8 @@ function Cashier(props) {
 	}, [props.minTime, props.maxTime, props.paused])
 
 	const bgColor = props.stress > 0.5
-		? `rgba(255, 0, 0, ${props.stress / 6})`
-		: `rgba(0, 255, 50, ${(0.5 - props.stress) / 6})`
+		? `rgba(255, 0, 0, ${props.stress / 8})`
+		: `rgba(0, 255, 50, ${(0.5 - props.stress) / 8})`
 
 
 	return (

@@ -13,6 +13,7 @@
 html {
 	color: var(--text-normal);
 	background: var(--bg-main);
+	overflow: hidden;
 }
 
 html,
@@ -20,6 +21,7 @@ body,
 #root,
 .App {
 	height: 100%;
+	max-height: fit-content;
 }
 
 body {
@@ -92,6 +94,8 @@ body {
 	padding: 25px;
 	background: var(--bg-cashiers-panel);
 	width: 100%;
+	overflow: auto;
+	position: relative;
 }
 
 .cashier_list {
@@ -101,11 +105,22 @@ body {
 }
 
 .cashier {
-	background: rgba(8, 16, 26, 0.25);
+	position: relative;
 	border-radius: 10px;
 	padding: 15px;
 	display: block;
 	width: fit-content;
+}
+
+.cashier::before {
+	position: absolute;
+	border-radius: 10px;
+	content: '';
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(8, 16, 26, 0.1);
 }
 
 .cashier .param_list {
@@ -120,7 +135,7 @@ body {
 	align-items: stretch;
 	padding: 10px;
 	border-radius: 8px;
-	background: rgba(11, 206, 99, 0.1);
+	background: rgba(134, 163, 224, 0.1);
 }
 
 .cashier h3 {
