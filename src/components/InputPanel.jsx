@@ -1,18 +1,11 @@
 import React, { Component } from 'react'
 import InputField from './InputField'
 import PropTypes from 'prop-types'
+import Button from './Button'
 
 export default class InputPanel extends Component {
 
-	/** Как я без этого жил, мммм статическая типизация */
-	static propTypes = {
-		defaultValues: PropTypes.object,
-		onChange: PropTypes.func
-	}
-
 	render() {
-
-		// В каждом поле можно указать по доп. объекту, в каджом свой defaultValue.
 
 		const inputFieldProps = [
 			{
@@ -37,12 +30,17 @@ export default class InputPanel extends Component {
 			}
 		]
 
+		const pauseButtonProps = {
+			id: 'pauseButton',
+			label: this.props.values.paused ? 'Возобновить' : 'Остановить'
+		}
+
 		const inputFields = inputFieldProps.map((prop) => (
 			<InputField
 				id={prop.id}
 				label={prop.label}
 				onChange={e => this.props.onChange(e)}
-				defaultValue={this.props.defaultValues[prop.id]}
+				value={this.props.values[prop.id]}
 				key={prop.id}
 			/>
 		))
@@ -52,6 +50,12 @@ export default class InputPanel extends Component {
 				<h1>Переменные</h1>
 				<div className='input_list'>
 					{inputFields}
+					<Button
+						id={pauseButtonProps.id}
+						label={pauseButtonProps.label}
+						onClick={e => this.props.onPause()}
+						className={this.props.values.paused ? 'resume' : 'pause' }
+					/>
 				</div>
 			</div>
 		)

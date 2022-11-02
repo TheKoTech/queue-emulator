@@ -73,6 +73,20 @@ body {
 	outline: red 3px solid;
 }
 
+.button {
+	background: rgb(219, 62, 0);
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 1em;
+	color: var(--text-normal);
+	border: none;
+	border-radius: 5px;
+	padding: 9px 15px;
+	box-sizing: border-box;
+	width: 100%;
+	cursor: pointer;
+}
+
 .cashiers_panel {
 	margin: 0;
 	padding: 25px;

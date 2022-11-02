@@ -11,7 +11,7 @@ function InputField(props) {
 				type="text"
 				id={props.id}
 				pattern='\d{1,3}'
-				defaultValue={props.defaultValue}
+				value={props.value}
 				onChange={(e) => props.onChange(e)}
 				required
 			/>
@@ -22,7 +22,7 @@ function InputField(props) {
 InputField.propTypes = {
 	id: PropTypes.string,
 	label: PropTypes.string,
-	defaultValue: PropTypes.number,
+	value: PropTypes.number,
 	onChange: PropTypes.func
 }
 

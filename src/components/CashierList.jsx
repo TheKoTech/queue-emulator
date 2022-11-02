@@ -11,7 +11,6 @@ function CashierList(props) {
 
 	const [queueLengths, setQueueLengths] = useState(new Array(props.numOfCashiers).fill(0))
 	useEffect(() => {
-		console.log('reset');
 		setQueueLengths((prevQueue) => {
 			let sumOfCustomers = 0
 			prevQueue.forEach(num => { sumOfCustomers += num })
@@ -27,14 +26,16 @@ function CashierList(props) {
 
 
 	function onCashierServed(id) {
-		setQueueLengths((prevQueue) => {
-			if (prevQueue[id] > 0) {
-				const newQueue = [...prevQueue]
-				newQueue[id]--
-				return newQueue
-			}
-			return prevQueue
-		})
+		setTimeout(() =>
+			setQueueLengths((prevQueue) => {
+				if (prevQueue[id] > 0) {
+					const newQueue = [...prevQueue]
+					newQueue[id]--
+					return newQueue
+				}
+				return prevQueue
+			}), 50
+		)
 	}
 
 
@@ -46,6 +47,7 @@ function CashierList(props) {
 				<Cashier
 					key={val}
 					title={'Касса ' + (val + 1)}
+					paused={props.paused || queueLengths[val] == 0}
 					id={val}
 					numOfCustomers={queueLengths[val]}
 					minTime={props.minServeTime}
@@ -54,11 +56,13 @@ function CashierList(props) {
 				/>
 			)
 		)
-	}, [queueLengths])
+	}, [queueLengths, props.paused, props.maxServeTime, props.minServeTime])
 
 
 	let timeTillNextCustomers = randInt(props.customersInterval) + 1
 	useEffect(() => {
+		if (props.paused) return
+
 		const timer = setInterval(() => {
 			if (timeTillNextCustomers === 0) {
 
@@ -78,7 +82,6 @@ function CashierList(props) {
 			}
 			timeTillNextCustomers--
 		}, 1000)
-		console.log('new timer')
 		return () => clearInterval(timer)
 	}, [props])
 

@@ -11,7 +11,8 @@ function Cashier(props) {
 		Math.floor(Math.random() * (props.maxTime - props.minTime)) + props.minTime
 	)
 	useEffect(() => {
-		console.log('Cashier.jsx: new timer')
+		setTimeToServe(Math.floor(Math.random() * (props.maxTime - props.minTime)) + props.minTime)
+		if (props.paused) return
 		const timer = setInterval(() => {
 			setTimeToServe((prevTimeToServe) => {
 				if (prevTimeToServe === 0) {
@@ -25,11 +26,10 @@ function Cashier(props) {
 		}, 1000)
 
 		return () => {
-			console.log('clear()')
 			clearInterval(timer)
 		}
 
-	}, [props.minTime, props.maxTime])
+	}, [props.minTime, props.maxTime, props.paused])
 
 	return (
 		<div className="cashier">

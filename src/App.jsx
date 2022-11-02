@@ -10,23 +10,33 @@ export default class App extends Component {
 		customersInterval: 1,
 		customersPerInterval: 1,
 		minServeTime: 2,
-		maxServeTime: 5
+		maxServeTime: 5,
+		paused: false
 	}
 
 	/** Добавляет данные из InputField в this.state. */
 	handleInputChange(e) {
 		if (!e.target.validity.valid) return
+		if (e.target.id === 'minServeTime' && +e.target.value > this.state.maxServeTime) return
+		if (e.target.id === 'maxServeTime' && +e.target.value < this.state.minServeTime) return
 		this.setState({ [e.target.id]: +e.target.value })
+	}
+
+	handlePause(e) {
+		this.setState({
+			paused: !this.state.paused
+		})
 	}
 
 	render() {
 		return (
 			<div className="App">
 				<InputPanel
-					defaultValues={this.state}
+					values={this.state}
 					onChange={(e) => this.handleInputChange(e)}
+					onPause={(e) => this.handlePause(e)}
 				/>
-				<CashierPanel {...this.state}/>
+				<CashierPanel {...this.state} />
 			</div>
 		)
 	}
