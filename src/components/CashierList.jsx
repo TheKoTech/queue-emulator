@@ -42,6 +42,8 @@ function CashierList(props) {
 	const [cashierList, setCashierList] = useState()
 	useEffect(() => {
 		const cashierKeys = Array.from({ length: props.numOfCashiers }, (_, i) => i)
+		const maxQueue = Math.max(...queueLengths)
+		const minQueue = Math.min(...queueLengths)
 		setCashierList(
 			cashierKeys.map((val) =>
 				<Cashier
@@ -53,6 +55,7 @@ function CashierList(props) {
 					minTime={props.minServeTime}
 					maxTime={props.maxServeTime}
 					onServed={onCashierServed}
+					stress={(queueLengths[val] - minQueue) / (maxQueue - minQueue)}
 				/>
 			)
 		)

@@ -110,6 +110,7 @@ body {
 
 .cashier .param_list {
 	display: flex;
+	flex-direction: row;
 	column-gap: 15px;
 }
 
@@ -117,7 +118,6 @@ body {
 	display: flex;
 	font-size: 1.3em;
 	align-items: stretch;
-	/* height: 32px; */
 	padding: 10px;
 	border-radius: 8px;
 	background: rgba(11, 206, 99, 0.1);
@@ -148,8 +148,15 @@ body {
 	content: url('https://api.iconify.design/subway/time-2.svg?color=white');
 }
 
+.avg_icon {
+	opacity: 0.7;
+	width: 32px;
+	align-self: center;
+	content: url('https://api.iconify.design/ant-design/vertical-align-middle-outlined.svg?color=white');
+}
+
 .param_label {
-	width: 50px;
+	width: 49px;
 	background: none;
 	font-size: inherit;
 	color: var(--text-normal);

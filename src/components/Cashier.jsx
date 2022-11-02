@@ -2,27 +2,42 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
 import { useEffect } from 'react'
-
+import CashierParam from './CashierParam'
 
 
 function Cashier(props) {
 
-	const [timeToServe, setTimeToServe] = useState(
-		Math.floor(Math.random() * (props.maxTime - props.minTime)) + props.minTime
-	)
+	const randInt = (max) => Math.floor(Math.random() * max)
+
+	const timeToServe = randInt(props.maxTime - props.minTime + 1) + props.minTime
+	const [state, setState] = useState({
+		timeToServe: timeToServe,
+		curTimeToServe: timeToServe,
+		amountServed: 0,
+		avgTime: 0
+	})
 	useEffect(() => {
-		setTimeToServe(Math.floor(Math.random() * (props.maxTime - props.minTime)) + props.minTime)
 		if (props.paused) return
 		const timer = setInterval(() => {
-			setTimeToServe((prevTimeToServe) => {
-				if (prevTimeToServe === 0) {
+			setState(prevState => {
+				if (prevState.timeToServe === 0) {
+					const newAvgTime = (prevState.avgTime * prevState.amountServed + prevState.curTimeToServe) / (prevState.amountServed + 1)
+					const newTimeToServe = randInt(props.maxTime - props.minTime + 1) + props.minTime
 					props.onServed(props.id)
-					return Math.floor(Math.random() * (props.maxTime - props.minTime)) + props.minTime
+					return {
+						...prevState,
+						timeToServe: newTimeToServe,
+						avgTime: newAvgTime,
+						amountServed: prevState.amountServed + 1,
+						curTimeToServe: newTimeToServe
+					}
 				} else {
-					return prevTimeToServe - 1
+					return {
+						...prevState,
+						timeToServe: prevState.timeToServe - 1
+					}
 				}
-			}
-			)
+			})
 		}, 1000)
 
 		return () => {
@@ -31,22 +46,30 @@ function Cashier(props) {
 
 	}, [props.minTime, props.maxTime, props.paused])
 
+	const bgColor = props.stress > 0.5
+		? `rgba(255, 0, 0, ${props.stress / 6})`
+		: `rgba(0, 255, 50, ${(0.5 - props.stress) / 6})`
+
+
 	return (
-		<div className="cashier">
+		<div
+			className="cashier"
+			style={{ background: bgColor }}
+		>
 			<h3>{props.title}</h3>
-			<div className="param_list">
-				<div className="param_box">
-					<span className="queue_icon" />
-					<span className="param_label">
-						{props.numOfCustomers}
-					</span>
-				</div>
-				<div className="param_box">
-					<span className="time_icon" />
-					<span className="param_label">
-						{timeToServe}
-					</span>
-				</div>
+			<div className='param_list'>
+				<CashierParam
+					value={props.numOfCustomers}
+					iconClass={'queue_icon'}
+				/>
+				<CashierParam
+					value={state.timeToServe}
+					iconClass={'time_icon'}
+				/>
+				<CashierParam
+					value={state.avgTime.toFixed(1)}
+					iconClass={'avg_icon'}
+				/>
 			</div>
 		</div>
 	)

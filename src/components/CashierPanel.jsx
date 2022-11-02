@@ -1,16 +1,14 @@
-import React, { Component } from 'react'
 import CashierList from './CashierList'
+import React from 'react'
 
 
-export default class CashierPanel extends Component {
-	render() {
-		return (
-			<div className='cashiers_panel'>
-				<h1>
-					Кассы
-				</h1>
-				<CashierList {...this.props} />
-			</div>
-		)
-	}
+export default function CashierPanel(props) {
+	return (
+		<div className='cashiers_panel'>
+			<h1>
+				Кассы
+			</h1>
+			<CashierList {...props} />
+		</div>
+	)
 }
